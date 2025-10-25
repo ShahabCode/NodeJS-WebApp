@@ -1,45 +1,23 @@
 const express = require("express")
-const birdsRoute = require("./routes/birds.route.js")
 const sequelize = require("./database/sequelize-connect.js")
 const User = require("./models/user.model.js")
 const app = express()
+const authRoute = require('./routes/auth.route.js')
+const path = require("path")
+
 const port = 3000
 app.use(express.json())
+// Mount authentication routes under /auth
+app.use("/auth", authRoute)
 
 
 app.get('/', async (req, res) => {
-    const users = await User.findAll();
-    res.send(users)
+    res.send({"message": "welcome"})
 })
 
-
-app.get('/create-user', async (req, res) => {
-    const user = await User.create({ firstName: "amir", lastName: "jalali", password:"1234" , email: "amir@g.com"})
-    res.send(user)
-})
-
-
-app.post('/login', async (req, res) => {
-    const {email, password} = req.body
-    const user = await User.findOne({
-        where: {
-            email
-        }
-    })
-    if (user) {
-        if (user.password == password){
-            res.send("Hi To Panel!")
-        } else {
-            res.send("The Password is Incorrent")
-        }
-    } else {
-        res.send("User Not Found!")
-    }
-})
-
-
-// Mount birds routes under /birds endpoint
-// app.use('/birds', birdsRoute)
+// Set EJS as the template engine
+app.set("view engine", "ejs")
+app.set("views", path.join(__dirname, "views"))
 
 
 app.listen(port, async() => {
