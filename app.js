@@ -1,16 +1,16 @@
 const express = require("express")
 const sequelize = require("./database/sequelize-connect.js")
-const User = require("./models/user.model.js")
-const app = express()
 const authRoute = require('./routes/auth.route.js')
 const path = require("path")
 
+const app = express()
 const port = 3000
+app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 // Mount authentication routes under /auth
 app.use("/auth", authRoute)
 
-
+ 
 app.get('/', async (req, res) => {
     res.send({"message": "welcome"})
 })
