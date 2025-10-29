@@ -1,14 +1,18 @@
 const express = require("express")
 const sequelize = require("./database/sequelize-connect.js")
 const authRoute = require('./routes/auth.route.js')
+const userRoute = require("./routes/user.route.js")
+const cookieParser = require("cookie-parser");
 const path = require("path")
 
 const app = express()
 const port = 3000
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
+app.use(cookieParser());
 // Mount authentication routes under /auth
 app.use("/auth", authRoute)
+app.use("/user", userRoute)
 
  
 app.get('/', async (req, res) => {
