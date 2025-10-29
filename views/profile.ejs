@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Profile</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f9fc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .profile-container {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      width: 380px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      color: #333;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #007bff;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #eee;
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    li strong {
+      color: #007bff;
+    }
+
+    li:last-child {
+      border-bottom: none;
+    }
+
+    .btn-edit {
+      display: block;
+      width: 100%;
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 1.5rem;
+      transition: background 0.3s;
+    }
+
+    .btn-edit:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-container">
+    <h1>User Information</h1>
+    <div class="card">
+      <div class="card-title">User Profile</div>
+      <ul>
+        <li><strong>Name:</strong> <%= user.name %></li>
+        <li><strong>Email:</strong> <%= user.email %></li>
+      </ul>
+      <button class="btn-edit">Edit Profile</button>
+    </div>
+  </div>
+</body>
+</html>
