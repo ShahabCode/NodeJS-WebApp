@@ -2,6 +2,7 @@ const express = require("express")
 const sequelize = require("./database/sequelize-connect.js")
 const authRoute = require('./routes/auth.route.js')
 const userRoute = require("./routes/user.route.js")
+const homeRoute = require("./routes/home.route.js")
 const cookieParser = require("cookie-parser");
 const path = require("path")
 
@@ -13,12 +14,9 @@ app.use(cookieParser());
 // Mount authentication routes under /auth
 app.use("/auth", authRoute)
 app.use("/user", userRoute)
+app.use("/", homeRoute)
 
  
-app.get('/', async (req, res) => {
-    res.send({"message": "welcome"})
-})
-
 // Set EJS as the template engine
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
