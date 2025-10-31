@@ -87,7 +87,7 @@ router.post('/register', async (req, res) => {
             email
         })
 
-        res.send("User Registred!")
+        res.redirect("/auth/login")
     }
 })
 
