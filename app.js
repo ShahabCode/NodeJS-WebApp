@@ -15,7 +15,7 @@ app.use(cookieParser());
 app.use("/auth", authRoute)
 app.use("/user", userRoute)
 app.use("/", homeRoute)
-
+app.use(express.static('static'))
  
 // Set EJS as the template engine
 app.set("view engine", "ejs")
