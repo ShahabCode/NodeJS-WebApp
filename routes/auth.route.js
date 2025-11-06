@@ -71,7 +71,7 @@ router.get("/forget-password/:token", (req, res) => {
 
 
 router.post('/register', async (req, res) => {
-    const {firstName, lastName , email, password} = req.body
+    const {firstName, lastName, email, userName, password} = req.body
     const user = await User.findOne({
         where: {
             email
@@ -83,6 +83,7 @@ router.post('/register', async (req, res) => {
         const user = await User.create({
             firstName,
             lastName,
+            userName,
             password,
             email
         })
