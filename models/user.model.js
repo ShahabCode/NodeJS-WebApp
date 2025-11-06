@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes } = require("sequelize")
 const sequelize = require("../database/sequelize-connect.js")
+const { Hooks } = require("sequelize/lib/hooks")
 
 // Define a User model (represents a table named 'Users' in the database)
 const User = sequelize.define('User', {
@@ -7,9 +8,18 @@ const User = sequelize.define('User', {
         type: DataTypes.STRING,
         allowNull: false  // Field cannot be null
     },
-    lastName: {
+    lastName: { 
         type: DataTypes.STRING,
         allowNull: false
+    },
+    userName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique:true,
+        require:true,
+        set(value){
+            this.setDataValue("userName", value ? value.toLowerCase() : "")
+        }
     },
     password: {
         type: DataTypes.STRING,
@@ -17,7 +27,16 @@ const User = sequelize.define('User', {
     },
     email: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true,
+        require:true,
+        set(value){
+            this.setDataValue("email", value ? value.toLowerCase() : "")
+        }
+    },
+    bio: { 
+        type: DataTypes.STRING,
+        allowNull: true
     },
 }, { 
     tableName: "users",  
