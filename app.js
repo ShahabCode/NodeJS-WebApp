@@ -15,7 +15,8 @@ app.use(cookieParser());
 app.use("/auth", authRoute)
 app.use("/user", userRoute)
 app.use("/", homeRoute)
-app.use(express.static('static'))
+
+app.use(express.static(path.join(__dirname, "static")))
  
 // Set EJS as the template engine
 app.set("view engine", "ejs")
@@ -26,7 +27,9 @@ app.listen(port, async() => {
     try {
         // Test database connection before starting the server
         await sequelize.authenticate()
-        await sequelize.sync({force:true})
+        await sequelize.sync({
+            // force:true
+        })
         console.log("Connected To Database Successfully!")
         console.log(`Web Application Listening On Port ${port}`)
     } catch (error) {
