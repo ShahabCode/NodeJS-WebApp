@@ -70,7 +70,7 @@ router.post("/profile", requireAuth, upload.single("profile_image"), async (req,
                     }
                 }
             )
-            res.redirect("/auth/login")
+            res.redirect("/user/logout")
 
             } else {
                 res.redirect("/user/profile")
@@ -91,5 +91,10 @@ router.post("/profile", requireAuth, upload.single("profile_image"), async (req,
         res.redirect("/user/profile")
     }
 })
-    
+
+
+router.get("/logout", requireAuth, (req, res) => {
+    res.clearCookie("token").redirect("/auth/login")
+})
+
 module.exports = router
