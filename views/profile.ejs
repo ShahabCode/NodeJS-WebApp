@@ -232,11 +232,11 @@
                             success: function (posts) {
                                 var tableBody = $('#postsTableBody');
                                 $.each(posts, function (index, post) {
-                                    var row = `<tr id="${post.id}">` +
-                                        '<td>' + post.id + '</td>' +
+                                    var row = `<tr id="${post.postId}">` +
+                                        '<td>' + post.postId + '</td>' +
                                         '<td>' + post.createdAt + '</td>' +
                                         '<td>' + post.title + '</td>' +
-                                        `<td><a href="/user/posts/${post.id}"><button class="btn btn-primary">Edit</button></a><button class="btn btn-danger" onclick="deletePost(${post.id})">Delete</button></td>` +
+                                        `<td><a href="/user/posts/${post.postId}"><button id="editBtn">Edit</button></a><button id="deleteBtn" onclick="deletePost(${post.id})">Delete</button></td>` +
                                         '<td></td>' +
                                         '</tr>';
                                     tableBody.append(row);
