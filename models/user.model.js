@@ -4,6 +4,12 @@ const { Hooks } = require("sequelize/lib/hooks")
 
 // Define a User model (represents a table named 'Users' in the database)
 const User = sequelize.define('User', {
+    userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true
+    },
     firstName: {
         type: DataTypes.STRING,
         allowNull: false  // Field cannot be null
