@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken")
 const { requireAuth } = require("../middlewares/auth.middleware.js")
 const multer = require("multer")
 const { where } = require("sequelize")
+const Post = require("../models/post.model.js")
 
 
 const storage = multer.diskStorage({
@@ -95,6 +96,38 @@ router.post("/profile", requireAuth, upload.single("profile_image"), async (req,
 
 router.get("/logout", requireAuth, (req, res) => {
     res.clearCookie("token").redirect("/auth/login")
+})
+
+
+router.get("/posts/create", requireAuth, (req, res) => {
+    res.render("create_post")
+})
+
+
+router.post("/posts/create", upload.single("cover"), requireAuth, async (req, res) => {
+    const { title, content } = req.body
+
+    const user = await User.findOne({
+        where: {email: res.locals.decoded.email}
+    })
+    await Post.create({
+        userId: user.userId,
+        title,
+        content
+    })
+
+    res.redirect("/user/profile")
+})
+
+
+router.get("/posts", requireAuth, async (req, res) => {
+    const user = await User.findOne({
+        where: {email: res.locals.decoded.email}
+    })
+    const posts = await Post.findAll({
+        where: {userId: user.userId}
+    })
+    res.send(posts)
 })
 
 module.exports = router
