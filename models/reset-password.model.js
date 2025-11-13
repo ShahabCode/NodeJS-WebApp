@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require("sequelize")
 const sequelize = require("../database/sequelize-connect.js")
 
-// Define a User model (represents a table named 'Users' in the database)
+// Define a reset password model 
 const ResetPassword = sequelize.define('ResetPassword', {
     token: {
         type: DataTypes.STRING,
@@ -14,5 +14,5 @@ const ResetPassword = sequelize.define('ResetPassword', {
     },
 })
 
-// Export the User model for use in other files
+// Export the reset password model for use in other files
 module.exports = ResetPassword
