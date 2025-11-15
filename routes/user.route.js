@@ -6,6 +6,7 @@ const { requireAuth } = require("../middlewares/auth.middleware.js")
 const multer = require("multer")
 const { where } = require("sequelize")
 const Post = require("../models/post.model.js")
+const { combineTableNames } = require("sequelize/lib/utils")
 
 
 const storage = multer.diskStorage({
@@ -21,9 +22,7 @@ const upload = multer({storage:storage})
 
 router.get("/profile", requireAuth, async (req, res) => {
     const user = await User.findOne({
-        where: {
-            email: res.locals.decoded.email
-        }
+        where: {email: res.locals.decoded.email}
     })
 
     if (user) {
@@ -43,14 +42,8 @@ router.post("/profile", requireAuth, upload.single("profile_image"), async (req,
         const static_path = `/user-files/${profile_image}`
 
         await User.update(
-            {
-               profile_image: static_path
-            }, 
-            {
-                 where: {
-                    email: res.locals.decoded.email
-                 }
-            }
+            { profile_image: static_path }, 
+            { where: {email: res.locals.decoded.email} }
         )
     } else if (current_password && new_password && confirm_new_password){
         const user = await User.findOne({
@@ -62,14 +55,8 @@ router.post("/profile", requireAuth, upload.single("profile_image"), async (req,
         if (current_password == user.password){
             if (new_password == confirm_new_password){
                 await User.update(
-                {
-                    password: new_password
-                },
-                {
-                    where: {
-                        email: res.locals.decoded.email
-                    }
-                }
+                { password: new_password },
+                { where: {email: res.locals.decoded.email} }
             )
             res.redirect("/user/logout")
 
@@ -82,12 +69,8 @@ router.post("/profile", requireAuth, upload.single("profile_image"), async (req,
 
     } else {
         await User.update(
-            req.body,
-            {
-                 where: {
-                    email: res.locals.decoded.email
-                 }
-            }
+                req.body,
+                { where: {email: res.locals.decoded.email} }
             )
         res.redirect("/user/profile")
     }
@@ -106,6 +89,7 @@ router.get("/posts/create", requireAuth, (req, res) => {
 
 router.post("/posts/create", upload.single("cover"), requireAuth, async (req, res) => {
     const { title, content } = req.body
+    const cover = req.file?.originalname
 
     const user = await User.findOne({
         where: {email: res.locals.decoded.email}
@@ -113,7 +97,8 @@ router.post("/posts/create", upload.single("cover"), requireAuth, async (req, re
     await Post.create({
         userId: user.userId,
         title,
-        content
+        content,
+        cover
     })
 
     res.redirect("/user/profile")
@@ -130,4 +115,31 @@ router.get("/posts", requireAuth, async (req, res) => {
     res.send(posts)
 })
 
-module.exports = router
+
+router.delete("/posts/:id", requireAuth, async (req, res) => {
+    const {id} = req.params
+    await Post.destroy({where: {postId: id}})
+    res.send({"message": "Post has been deleted successfully!"})
+})
+
+
+router.get("/posts/:id", requireAuth, async (req, res) => {
+    const {id} = req.params
+    const post = await Post.findOne({where: {postId:id}})
+    res.render("update-post", {post})
+})
+
+
+router.post("/posts/:id", requireAuth, upload.single("cover"), async (req, res) => {
+    const {id} = req.params
+    const {title, content} = req.body
+    const cover = req.file?.originalname
+
+    await Post.update(
+        {title, content, cover}, {where: {postId: id}}
+    )
+    res.redirect("/user/profile")
+})
+
+
+module.exports = router 
