@@ -22,6 +22,10 @@ const Post = sequelize.define('Post', {
         type: DataTypes.STRING,
         allowNull: false  
     },
+    cover: {
+        type: DataTypes.STRING,
+        allowNull: false  
+    },
     content: { 
         type: DataTypes.STRING,
         allowNull: false
