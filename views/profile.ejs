@@ -236,7 +236,7 @@
                                         '<td>' + post.postId + '</td>' +
                                         '<td>' + post.createdAt + '</td>' +
                                         '<td>' + post.title + '</td>' +
-                                        `<td><a href="/user/posts/${post.postId}"><button id="editBtn">Edit</button></a><button id="deleteBtn" onclick="deletePost(${post.id})">Delete</button></td>` +
+                                        `<td><a href="/user/posts/${post.postId}"><button id="editBtn">Edit</button></a><button id="deleteBtn" onclick="deletePost(${post.postId})">Delete</button></td>` +
                                         '<td></td>' +
                                         '</tr>';
                                     tableBody.append(row);
@@ -302,7 +302,7 @@
                             // Handle any errors that occur during the upload
                             console.error("Error occurred during file upload.");
                         }
-                    });
+                    }); 
             }
 
 
