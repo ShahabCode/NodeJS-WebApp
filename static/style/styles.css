@@ -100,9 +100,42 @@ header.hero {
     transition: 0.3s;
 }
 
+#editBtn{
+    width: auto;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#deleteBtn{
+    width: auto;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    background-color: #e82121;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
 .btn-primary:hover {
     background-color: #0056b3;
 }
+
+#editBtn:hover{
+    background-color: #004da0;
+}
+
+#deleteBtn:hover{
+    background-color: #a20202;
+}
+
 
 /* Alerts */
 .alert {
