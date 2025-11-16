@@ -1,5 +1,8 @@
 # NodeJS Web Application
 
+## 🚧 Work In Progress
+This project is still under development. Features may be incomplete.
+
 A **Backend-focused web application** built with Node.js, Express.js, and EJS, featuring a MySQL database managed through Sequelize. This project demonstrates hands-on experience in building secure and robust web applications, with a focus on authentication, CRUD operations, API design, file handling, and security best practices.
 
 ---
