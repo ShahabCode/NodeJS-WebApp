@@ -3,6 +3,7 @@ const sequelize = require("./database/sequelize-connect.js")
 const authRoute = require('./routes/auth.route.js')
 const userRoute = require("./routes/user.route.js")
 const homeRoute = require("./routes/home.route.js")
+const adminRoute = require("./routes/admin.route.js")
 const cookieParser = require("cookie-parser");
 const path = require("path")
 
@@ -14,6 +15,7 @@ app.use(cookieParser());
 // Mount authentication routes under /auth
 app.use("/auth", authRoute)
 app.use("/user", userRoute)
+app.use("/admin", adminRoute)
 app.use("/", homeRoute)
 
 app.use(express.static(path.join(__dirname, "static")))
