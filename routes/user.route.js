@@ -11,7 +11,7 @@ const { combineTableNames } = require("sequelize/lib/utils")
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, "static/user-files/") // Set the directory for storing uploaded files
+        cb(null, "static/user_files/") // Set the directory for storing uploaded files
     }, 
     filename: function (req, file, cb) {
         cb(null, file.originalname) // Keep the original filename
@@ -39,7 +39,7 @@ router.post("/profile", requireAuth, upload.single("profile_image"), async (req,
     const { current_password, new_password, confirm_new_password } = req.body
 
     if (profile_image) {
-        const static_path = `/user-files/${profile_image}`
+        const static_path = `/user_files/${profile_image}`
 
         await User.update(
             { profile_image: static_path }, 
