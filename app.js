@@ -6,6 +6,7 @@ const homeRoute = require("./routes/home.route.js")
 const adminRoute = require("./routes/admin.route.js")
 const cookieParser = require("cookie-parser");
 const path = require("path")
+const { isAdmin } = require("./middlewares/auth.middleware.js")
 
 const app = express()
 const port = 3000
@@ -15,7 +16,7 @@ app.use(cookieParser());
 // Mount authentication routes under /auth
 app.use("/auth", authRoute)
 app.use("/user", userRoute)
-app.use("/admin", adminRoute)
+app.use("/admin", isAdmin, adminRoute)
 app.use("/", homeRoute)
 
 app.use(express.static(path.join(__dirname, "static")))
