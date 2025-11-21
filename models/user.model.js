@@ -58,5 +58,23 @@ const User = sequelize.define('User', {
     timestamps: true     
 })
 
+
+User.sync().then(async () => {
+    const user = await User.findOne({
+        where: {email: 'admin@gmail.com'}
+    })
+
+    if (!user) {
+        await User.create({
+            firstName: 'admin',
+            lastName: 'admin',
+            email: 'admin@gmail.com',
+            password: '1234',
+            userName: 'admin',
+            role: 'admin'
+        })
+    }
+})
+
 // Export the User model for use in other files
 module.exports = User
