@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
     res.render("home", {
         users, posts: posts.map((item, index) => {
             return {
-                id: item.id,
+                postId: item.postId,
                 title: item.title,
                 cover: item.cover,
                 content: item.content.substring(0, 50)
@@ -27,6 +27,23 @@ router.get("/", async (req, res) => {
         })
     })
 }) 
+
+router.get("/post/:postId", async (req, res) => {
+    const postId = req.params.postId
+
+    const post = await Post.findOne({
+        where: { postId }
+    })
+
+    if (!post) {
+        return res.status(404).send("Post not found")
+    }
+
+    res.render("post", {
+        post
+    })
+})
+
  
 // router.get("home/posts", async (req, res) => {
    
