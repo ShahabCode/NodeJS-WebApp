@@ -1,51 +1,69 @@
-# NodeJS Web Application
+# Vulnerable Node.js Web Application (Pentesting Portfolio)
 
-A **Backend-focused web application** built with Node.js, Express.js, and EJS, featuring a MySQL database managed through Sequelize. This project demonstrates hands-on experience in building secure and robust web applications, with a focus on authentication, CRUD operations, API design, file handling, and security best practices.
+A deliberately **vulnerable backend-focused web application** built with **Node.js, Express.js, and EJS**, using a **MySQL database managed by Sequelize**.
 
-## 🚧 Work In Progress
-This project is still under development. Features may be incomplete.
+This project is designed as a **Web Application Pentesting portfolio project**, demonstrating real-world vulnerability discovery, exploitation, and security analysis alongside backend development skills.
+
+⚠️ **Warning:** This application intentionally contains security vulnerabilities and must be used **for educational purposes only**.
+
+---
+
+## 🚧 Project Status
+This project is actively evolving.  
+Some features may be intentionally insecure to demonstrate common web application vulnerabilities.
 
 ---
 
 ## 📌 Project Overview
-This web application is designed to showcase my **full-stack backend development skills**.  
-Key goals include:
+The primary goal of this project is to showcase:
 
-- Developing a **secure and maintainable backend** 🔐
-- Implementing **Authentication & Authorization** 🗝️
-- Performing **CRUD operations** 📄
-- Designing **RESTful APIs** 🌐
-- Handling **file uploads securely** 📁
-- Identifying and **patching vulnerabilities** 🛡️
+- Backend development fundamentals with Node.js & Express.js
+- Realistic implementation of authentication and CRUD functionality
+- Identification and exploitation of common web vulnerabilities
+- Writing professional **security writeups** suitable for pentesting portfolios
 
-> This repository serves as a **portfolio project**, highlighting both technical skills and security awareness.
+> This repository serves as a **dual-purpose project**: backend development + web application security practice.
 
 ---
 
-## 🛠️ Features & Capabilities
+## 🔥 Security Vulnerabilities (Intentionally Present)
+
+The application intentionally contains the following vulnerabilities:
+
+- [Cross-Site Scripting (XSS)](vulnerabilities/XSS.md)
+- [Cross-Site Request Forgery (CSRF)](vulnerabilities/CSRF.md)
+- [Mass Assignment – Privilege Escalation](vulnerabilities/mass-assignment.md)
+- [File Upload – Insecure File Handling](vulnerabilities/file-upload.md)
+- [JSON Web Token (JWT) – Weak Signing Secret](vulnerabilities/JWT.md)
+
+
+📂 Detailed exploitation writeups with PoC requests, impact analysis, and remediation guidance are available in the `/vulnerabilities` directory.
+
+---
+
+## 🛠️ Application Features
 
 | Feature | Description |
-|---------|-------------|
-| **Authentication** | Registration, login, password management, session handling 🗝️ |
-| **CRUD Operations** | Create, read, update, delete resources with proper validation 📄 |
-| **RESTful API** | Backend endpoints designed following best practices 🌐 |
-| **Database Integration** | MySQL database managed using Sequelize ORM 🗄️ |
-| **File Upload** | Secure file upload handling 📁 |
-| **Security Focus** | Vulnerability identification and patching planned 🛡️ |
+|-------|-------------|
+| **Authentication** | User registration, login, JWT-based session handling |
+| **CRUD Operations** | Create, read, update, and delete resources |
+| **RESTful APIs** | Well-structured backend endpoints |
+| **Database Integration** | MySQL database managed via Sequelize ORM |
+| **File Upload** | Basic file upload functionality |
+| **Security Focus** | Intentional vulnerable logic for pentesting practice |
 
 ---
 
 ## 💻 Technologies Used
 
 | Technology | Purpose |
-|------------|---------|
-| Node.js | Backend runtime environment 🔧 |
-| Express.js | Server-side routing & middleware ⚡ |
-| EJS | Template engine for rendering pages 📝 |
-| MySQL | Relational database 🗄️ |
-| Sequelize | ORM for database interaction 🛠️ |
-
-> Future improvements will include **patching security vulnerabilities** and enhancing backend robustness.
+|----------|---------|
+| Node.js | Backend runtime |
+| Express.js | Routing & middleware |
+| EJS | Server-side templating |
+| MySQL | Relational database |
+| Sequelize | ORM for database interaction |
+| Burp Suite | Intercepting & exploiting requests |
 
 ---
 
@@ -63,8 +81,8 @@ npm install
 ```
 
 3. Configure database:
-- Create a MySQL database.
-- Update database credentials in the configuration file (e.g., `config/config.json` or `.env`).
+- Create a MySQL database
+- Configure credentials via `.env` or `config/config.json`
 
 4. Run migrations (if applicable):
 ```bash
@@ -76,23 +94,35 @@ npx sequelize db:migrate
 npm start
 ```
 
-6. Access the application at:
+6. Access the application:
 ```
 http://localhost:3000
 ```
 
 ---
 
-## 🎯 Purpose & Outcome
+## 🎯 Learning Outcomes
 This project demonstrates:
 
-- **Backend Development Skills** – Node.js, Express.js, Sequelize 🛠️  
-- **Database Management Skills** – MySQL relational database design 🗄️  
-- **Security Awareness** – identifying and patching vulnerabilities 🛡️  
-- **Portfolio Readiness** – a complete project to showcase to recruiters ⭐
+- Practical understanding of **OWASP Top 10** vulnerabilities
+- Hands-on exploitation using **Burp Suite**
+- Writing clear and structured **pentesting writeups**
+- Understanding root causes and secure design principles
+- Ability to explain vulnerabilities and mitigations professionally
+
+---
+
+## 🧪 Intended Audience
+- Junior Web Application Pentesters
+- Security students and self-learners
+- Recruiters reviewing pentesting portfolios
 
 ---
 
 ## 🤝 Contribution & Notes
-This repository is primarily part of my **portfolio**.  
-Further enhancements may include additional security hardening, automated testing, and code optimization.
+This repository is primarily part of a **personal pentesting portfolio**.
+
+If you are reviewing this project:
+- Vulnerabilities are **intentional**
+- Exploits are documented responsibly
+- Fixes and secure versions may be added in future iterations
