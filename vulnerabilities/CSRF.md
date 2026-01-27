@@ -114,7 +114,7 @@ For example: - Stored XSS payloads can be injected via forced post
 creation - Automatic CSRF triggers can be embedded inside malicious
 JavaScript
 
-Example payloads and attack scenarios are documented in: [Cross-Site Scripting (XSS)](/XSS.md)
+Example payloads and attack scenarios are documented in: [Cross-Site Scripting (XSS)](XSS.md)
 
 ------------------------------------------------------------------------
 
