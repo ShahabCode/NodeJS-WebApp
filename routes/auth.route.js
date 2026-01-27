@@ -110,7 +110,7 @@ router.post("/forget-password", async (req, res) => {
             token
         })
         console.log(token)
-        res.send("ok, check your email!")
+        res.send("Reset token created. Open your terminal (where node app.js is running), copy the token from the logs, and paste it into: http://localhost:3000/auth/forget-password/[TOKEN]")
     } else {
         res.redirect("/auth/login")
     }
