@@ -8,12 +8,6 @@ This project is designed as a **Web Application Pentesting portfolio project**, 
 
 ---
 
-## 🚧 Project Status
-This project is actively evolving.  
-Some features may be intentionally insecure to demonstrate common web application vulnerabilities.
-
----
-
 ## 📌 Project Overview
 The primary goal of this project is to showcase:
 
